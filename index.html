@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
+  <title>いずもん神社</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>いずもん神社</h1>
+  </header>
+  <main>
+    <div id="omikuji-box">
+      <p>[音が出ます]</p>
+      <button id="draw-button">おみくじを引く</button>
+      <h2 id="result">　</h2>
+    </div>
+    <section id="probability-table">
+      <h3>出現確率</h3>
+      <ul id="probability-list"></ul>
+    </section>
+  </main>
+  <footer>
+    <p>© 2024-2025 いずもん<br>
+    背景画像: みんちりえ（<a href="https://min-chi.material.jp/">https://min-chi.material.jp/</a>）<br>
+    効果音: ポケットサウンド（<a href="https://pocket-se.info/">https://pocket-se.info/</a>）</p>
+  </footer>
+  <audio id="omikuji-sound" src="syakasyaka.mp3" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>

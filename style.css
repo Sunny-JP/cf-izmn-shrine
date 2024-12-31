@@ -1,0 +1,101 @@
+body {
+    font-family: "Yuji Syuku", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    background-image: url('shrine-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: rgba(120, 78, 0, 0.8);
+    color: white;
+    padding: 10px;
+  }
+  
+  main {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+  }
+  
+  #omikuji-box {
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #8a3a00;
+    border-radius: 8px;
+  }
+  
+  #draw-button {
+    font-family: "Yuji Syuku", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #8a3a00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #draw-button:hover {
+    background-color: #502b00;
+  }
+  
+  #probability-table {
+    margin-top: 30px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #8a3a00;
+    border-radius: 8px;
+  }
+  
+  #probability-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #probability-list li {
+    margin: 0px;
+    font-size: 16px;
+  }
+  
+  footer,
+  footer p,
+  footer a {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ffffff;
+  }
+  
+  h1{
+    font-size: 40px;
+    margin: 0px;
+  }
+
+  h2{
+    font-size: 40px;
+    margin: 0px;
+    margin-top: 10px;
+  }
+
+  h3{
+    font-size: 30px;
+    margin: 0px;
+  }
+
+  p{
+    font-size: 20px;
+    margin: 0px;
+    margin-bottom: 15px;
+  }
