@@ -28,7 +28,6 @@ body {
   }
   
   #omikuji-box {
-    margin: 20px auto;
     padding: 20px;
     background: rgba(255, 255, 255, 0.9);
     border: 2px solid #8a3a00;
@@ -63,13 +62,34 @@ body {
   #probability-list {
     list-style: none;
     padding: 0;
+    display: inline-block; /* リスト全体を中央に配置 */
+    width: 270px; /* リスト全体の幅を制限 */
+    margin-left: -20px;
   }
   
   #probability-list li {
-    margin: 0px;
+    display: flex;
+    justify-content: space-between;
     font-size: 16px;
+    line-height: 1;
+    padding: 3px 0;
   }
   
+  #probability-list li span:nth-child(1) {
+    flex: 1; /* 結果 */
+    text-align: right;
+  }
+  
+  #probability-list li span:nth-child(2) {
+    flex: 1; /* 設定確率 */
+    text-align: right;
+  }
+  
+  #probability-list li span:nth-child(3) {
+    flex: 2; /* 試行確率 */
+    text-align: right;
+  }
+
   footer,
   footer p,
   footer a {
@@ -98,4 +118,8 @@ body {
     font-size: 20px;
     margin: 0px;
     margin-bottom: 15px;
+  }
+
+  #result{
+    height: 65px;
   }
