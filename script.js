@@ -12,20 +12,20 @@ const omikuji = [
 ];
 
 let attemptCount = 0; // 試行回数をカウント
-  
+
 // 確率に応じて結果を選ぶ関数
 function drawOmikuji() {
   const random = Math.random() * 100; // 0～99.999...を生成
   let cumulativeProbability = 0;
-  
+
   for (const item of omikuji) {
     cumulativeProbability += item.probability;
     if (random < cumulativeProbability) {
-      return item;
+      return item.result;
     }
   }
 }
-  
+
 // 確率表を画面に表示する関数
 function displayProbabilityTable() {
   const listElement = document.getElementById("probability-list");
@@ -35,11 +35,11 @@ function displayProbabilityTable() {
     listElement.appendChild(listItem);
   });
 }
-  
-// おみくじを引くボタンの動作 document.getElementById("draw-button").addEventListener("click", () => {
+
+// おみくじを引くボタンの動作
+document.getElementById("draw-button").addEventListener("click", () => {
   const sound = document.getElementById("omikuji-sound");
   const resultElement = document.getElementById("result");
-  const probabilityElement = document.getElementById("probability");
   const attemptElement = document.getElementById("attempt-count");
 
   // 結果表示を一時的にリセット
@@ -50,7 +50,7 @@ function displayProbabilityTable() {
 
   // 音の再生後に結果を表示
   sound.onended = () => {
-    const { result, probability } = drawOmikuji();
+    const result = drawOmikuji();
 
     // 試行回数を増やして更新
     attemptCount++;
@@ -59,6 +59,6 @@ function displayProbabilityTable() {
     resultElement.textContent = `結果: ${result}`;
   };
 });
-  
+
 // ページロード時に確率表を表示
 displayProbabilityTable();
