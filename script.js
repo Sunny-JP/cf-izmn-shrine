@@ -34,19 +34,18 @@ function displayProbabilityTable() {
   });
 }
   
-  // おみくじを引くボタンの動作
-  document.getElementById("draw-button").addEventListener("click", () => {
+// おみくじを引くボタンの動作 document.getElementById("draw-button").addEventListener("click", () => {
   const sound = document.getElementById("omikuji-sound");
   const resultElement = document.getElementById("result");
   const probabilityElement = document.getElementById("probability");
   const attemptElement = document.getElementById("attempt-count");
 
-  // 結果表示前
-  resultElement.textContent = "がらがらがら～";
-  
+  // 結果表示を一時的にリセット
+  resultElement.textContent = "がらがらがら〜";
+
   // 音を再生
   sound.play();
-  
+
   // 音の再生後に結果を表示
   sound.onended = () => {
     const { result, probability } = drawOmikuji();
