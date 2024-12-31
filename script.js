@@ -11,6 +11,9 @@ const omikuji = [
   { result: "大凶", probability: 0.6 }
 ];
 
+// おみくじ実行中かどうかを管理するフラグ
+let isDrawing = false;
+
 // 出現回数を記録するオブジェクト
 const resultCounts = omikuji.reduce((acc, { result }) => {
   acc[result] = 0;
@@ -30,17 +33,19 @@ function displayProbabilityTable() {
     const resultSpan = document.createElement("span");
     const setProbabilitySpan = document.createElement("span");
     const actualProbabilitySpan = document.createElement("span");
+    const count = document.createElement("span");
 
-    const actualProbability =
-      attemptCount > 0 ? ((resultCounts[result] / attemptCount) * 100).toFixed(1) : "0.0";
+    const actualProbability = attemptCount > 0 ? ((resultCounts[result] / attemptCount) * 100).toFixed(1) : "0.0";
 
     resultSpan.textContent = result;
     setProbabilitySpan.textContent = `${probability.toFixed(1)}%`;
-    actualProbabilitySpan.textContent = `${actualProbability}% (${resultCounts[result]}回)`;
+    actualProbabilitySpan.textContent = `${actualProbability}%`;
+    count.textContent = `(${resultCounts[result]})`;
 
     listItem.appendChild(resultSpan);
     listItem.appendChild(setProbabilitySpan);
     listItem.appendChild(actualProbabilitySpan);
+    listItem.appendChild(count);
     listElement.appendChild(listItem);
   });
 }
@@ -82,8 +87,55 @@ function animateResult(finalResult, callback) {
   }, 200); // 1文字ずつ表示する間隔（ms）
 }
 
-// おみくじを引くボタンの動作
+// 10回連続でおみくじを引いて順次表示する関数
+function drawOmikuji10Sequentially() {
+  if (isDrawing) return; // 実行中の場合は処理を中断
+
+  isDrawing = true; // フラグを立てる
+
+  const sound = document.getElementById("omikuji-sound");
+  const attemptElement = document.getElementById("attempt-count");
+  const resultElement = document.getElementById("result");
+
+  // 音の再生
+  sound.play();
+
+  // 初期表示をクリア
+  resultElement.innerHTML = "";
+
+  // 10回分の結果を格納する配列
+  const results = Array.from({ length: 10 }, drawOmikuji);
+
+  // 試行回数を一度に10増やす
+  attemptCount += 10;
+  attemptElement.textContent = `試行回数: ${attemptCount}`;
+
+  // 順次結果を表示
+  let currentIndex = 0;
+
+  const interval = setInterval(() => {
+    if (currentIndex < results.length) {
+      // 結果をカウント
+      resultCounts[results[currentIndex]]++;
+
+      // 新しい結果を表示
+      const resultSpan = document.createElement("span");
+      resultSpan.textContent = results[currentIndex];
+      resultSpan.className = "omikuji-result-small";
+      resultElement.appendChild(resultSpan);
+
+      currentIndex++;
+    } else {
+      clearInterval(interval);
+      displayProbabilityTable(); // 表を更新
+      isDrawing = false; // フラグを解除
+    }
+  }, 200); // 各結果の間隔
+}
+
+// 1回おみくじを引くボタンの動作
 document.getElementById("draw-button").addEventListener("click", () => {
+  isDrawing = true; // フラグを立てる
   const sound = document.getElementById("omikuji-sound");
   const attemptElement = document.getElementById("attempt-count");
 
@@ -102,8 +154,12 @@ document.getElementById("draw-button").addEventListener("click", () => {
     // アニメーション終了後に出現回数を更新して確率表を更新
     resultCounts[finalResult]++;
     displayProbabilityTable();
+    isDrawing = false; // フラグを解除
   });
 });
+
+// 10回連続でおみくじを引くボタンの動作
+document.getElementById("draw-10-button").addEventListener("click", drawOmikuji10Sequentially);
 
 // ページロード時に確率表を表示
 displayProbabilityTable();

@@ -34,12 +34,13 @@ body {
     border-radius: 8px;
   }
   
-  #draw-button {
+  #draw-button, 
+  #draw-10-button {
     font-family: "Yuji Syuku", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 24px;
-    padding: 10px 20px;
+    font-size: 22px;
+    padding: 5px 20px;
     background-color: #8a3a00;
     color: white;
     border: none;
@@ -48,7 +49,8 @@ body {
     margin-top: 5px;
   }
   
-  #draw-button:hover {
+  #draw-button:hover,
+  #draw-10-button:hover {
     background-color: #502b00;
   }
   
@@ -87,7 +89,12 @@ body {
   }
   
   #probability-list li span:nth-child(3) {
-    flex: 2; /* 試行確率 */
+    flex: 1; /* 試行確率 */
+    text-align: right;
+  }
+
+  #probability-list li span:nth-child(4) {
+    flex: 1; /* 試行確率 */
     text-align: right;
   }
 
@@ -97,6 +104,7 @@ body {
     margin-top: 20px;
     font-size: 14px;
     color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
   }
   
   h1{
@@ -115,6 +123,14 @@ body {
     margin: 0px;
   }
 
+  h4{
+    font-weight: normal;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: -15px;
+
+  }
+
   p{
     font-size: 20px;
     margin: 0px;
@@ -122,5 +138,18 @@ body {
   }
 
   #result{
-    height: 65px;
+    height: 95px;
+    display: flex;
+    flex-wrap: wrap; /* 複数行にわたって表示する */
+    justify-content: center; /* 中央揃え */
+    align-items: center; /* 縦方向の中央揃え */
+    gap: 0px; /* 各要素間の間隔 */
   }
+
+  /* 10回分の結果表示を小さく整列 */
+#result span.omikuji-result-small {
+  display: inline-block;
+  width: calc(10%); /* 5列に収まるよう調整 */
+  font-size: 28px;
+  font-weight: bold;
+}
