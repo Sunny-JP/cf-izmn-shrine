@@ -10,6 +10,8 @@ const omikuji = [
   { result: "凶", probability: 1.6 },
   { result: "大凶", probability: 0.6 }
 ];
+
+let attemptCount = 0; // 試行回数をカウント
   
 // 確率に応じて結果を選ぶ関数
 function drawOmikuji() {
@@ -59,5 +61,4 @@ function displayProbabilityTable() {
 });
   
 // ページロード時に確率表を表示
-window.onload = displayProbabilityTable;
-  
+displayProbabilityTable();
